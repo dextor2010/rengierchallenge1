@@ -4,6 +4,12 @@ import httpx
 from pydantic import BaseModel
 app = FastAPI()
 
+
+@app.get("/")
+async def get_return_value():
+    return {"welcome_message":'Welcome to Rengier, Use the following end point to test the services'}
+
+
 @app.get("/server")
 async def server_info():
     url = "https://rimu-tf-base-playground.s3.eu-west-1.amazonaws.com/tech_assess.json"
@@ -46,7 +52,7 @@ async def get_return_value():
 class UpdateValue(BaseModel):
     return_value: int
 
-json_data = {"tech": {"return_value": 1337}}
+json_data = {"tech": {"return_value":1337}}
 
 @app.get("/get-return-value")
 async def get_return_value():
